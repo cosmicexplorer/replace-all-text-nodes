@@ -14,7 +14,7 @@ replaceAllFromNode = (replaceFn, baseNode, opts) ->
   return [] if not isValidBaseNode baseNode
   # bfs for text leaves while trimming input boxes
   getLeafTextNodes = (node) -> switch
-      when node.hasChildNodes() and (opts.inputsToo or not isInputBox node)
+      when node.hasChildNodes() and (opts?.inputsToo or not isInputBox node)
         node.childNodes.map(getLeafTextNodes).reduce (a, b) -> a.concat b
       when isTextNode node then [node]
       else []
