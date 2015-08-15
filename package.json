@@ -1,7 +1,7 @@
 {
   "name": "replace-all-text-nodes",
   "description": "replace all current and new text nodes on your page",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "license": "GPL-3.0",
   "scripts": {
     "prepublish": "make"
