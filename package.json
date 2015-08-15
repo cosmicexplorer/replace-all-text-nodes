@@ -1,0 +1,17 @@
+{
+  "name": "replace-all-text-nodes",
+  "description": "replace all current and new text nodes on your page",
+  "version": "0.0.0",
+  "license": "GPL-3.0",
+  "scripts": {
+    "prepublish": "make"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/cosmicexplorer/replace-all-text-nodes.git"
+  },
+  "devDependencies": {
+    "coffee-script": "^1.9.3"
+  },
+  "main": "./replace-all.js"
+}
