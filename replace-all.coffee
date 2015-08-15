@@ -15,7 +15,8 @@ replaceAllFromNode = (replaceFn, baseNode, opts) ->
   # bfs for text leaves while trimming input boxes
   getLeafTextNodes = (node) -> switch
       when node.hasChildNodes() and (opts?.inputsToo or not isInputBox node)
-        node.childNodes.map(getLeafTextNodes).reduce (a, b) -> a.concat b
+        Array.prototype.slice.call(node.childNodes, 0).map(getLeafTextNodes)
+          .reduce (a, b) -> a.concat b
       when isTextNode node then [node]
       else []
   getLeafTextNodes(baseNode).forEach (node) -> node.data = replaceFn node.data
