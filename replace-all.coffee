@@ -23,7 +23,7 @@ replaceAllFromNode = (replaceFn, baseNode, opts) ->
 # if futureNodesToo specified, returns mutationobserver which can be cancelled
 replaceAllInPage = (replaceFn, opts) ->
   {inputsToo, notNow, repeat, timeouts, futureNodesToo} = opts if opts
-  rplc = -> replaceAll replaceFn, document, inputsToo: inputsToo
+  rplc = -> replaceAllFromNode replaceFn, document, inputsToo: inputsToo
   rplc() unless notNow
   timeouts?.forEach (timeout) -> setTimeout rplc, timeout
   setInterval rplc, repeat if repeat
@@ -36,7 +36,7 @@ watchFutureNodes = (replaceFn) ->
         when 'characterData'
           rec.target.data = replaceFn rec.target.data
         when 'childList'
-          replaceAll replaceFn, rec.target if rec.addedNodes.length > 0
+          replaceAllFromNode replaceFn, rec.target if rec.addedNodes.length > 0
     null # don't cons up list comprehension
 
 module.exports =
