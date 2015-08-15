@@ -28,3 +28,16 @@ Applies `replaceAllFromNode` to `document`, subject to some options.
 function watchFutureNodes(replaceFn) {
 ```
 Implementation of `futureNodesToo` in `replaceAllInPage`. Creates and returns a `MutationObserver` which applies `replaceFn` to any added or modified text nodes.
+
+# To Use
+
+Installation:
+```shell
+npm install --save replace-all-text-nodes
+browserify -r replace-all-text-nodes your-script.js -o output.js
+```
+In your-script.js:
+```javascript
+var ReplaceNodes = require('replace-all-text-nodes');
+ReplaceNodes.replaceAllInPage(...);
+```
