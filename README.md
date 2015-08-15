@@ -11,14 +11,14 @@ replaceAllFromNode = (replaceFn, baseNode, opts) ->
 - `replaceFn`: a function which replaces text. This can be done in any way desired. This works recursively downwards.
 - `baseNode`: the node to begin the tree search at.
 - `opts`: an object with any of the following keys:
-  - `noInputs`: if truthy, disregards any input boxes. This allows the user to type into input areas without having their text replaced.
+  - `inputsToo`: if truthy, also modifies any input boxes. Note that this may cause performance issues or unexpected UI behavior as the user will have their text replaced while typing.
 
 ```
 replaceAllInPage = (replaceFn, opts) ->
 ```
 Applies replaceAll to the document at hand, subject to some options.
 - `opts`: an object with any of the following keys:
-  - `noInputs`: forwards `noInputs` to `replaceAll`
+  - `inputsToo`: forwards `inputsToo` to `replaceAll`
   - `notNow`: doesn't immediately call `replaceAll`
   - `timeouts`: array of milliseconds, at which replaceAll will run over the document again. These milliseconds are all relative to the point when this function was called, not to each other.
   - `repeat`: milliseconds to repeat running replaceAll (this is not suggested; a `MutationObserver` used by `futureNodesToo` is preferable for performance reasons unless used in older browsers which do not support `MutationObserver`)
