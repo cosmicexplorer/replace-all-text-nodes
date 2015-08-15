@@ -37,7 +37,7 @@ watchFutureNodes = (replaceFn) ->
           rec.target.data = replaceFn rec.target.data
         when 'childList'
           replaceAll replaceFn, rec.target if rec.addedNodes.length > 0
-    null
+    null # don't cons up list comprehension
 
 module.exports =
   replaceAllFromNode: replaceAllFromNode
