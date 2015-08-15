@@ -22,12 +22,12 @@ Applies `replaceAllFromNode` to `document`, subject to some options.
   - `notNow`: doesn't immediately call `replaceAll`
   - `timeouts`: array of milliseconds, at which replaceAll will run over the document again. These milliseconds are all relative to the point when this function was called, not to each other.
   - `repeat`: milliseconds to repeat running `replaceAllFromNode` (this is not encouraged; a `MutationObserver` used by `futureNodesToo` is preferable for performance reasons unless supporting older browsers which do not support `MutationObserver`)
-  - `futureNodesToo`: adds a [MutationObserver](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver) to the page, mutating all elements added to the page. If this is specified, the function returns the `MutationObserver` used so that it can be cancelled as desired.
+  - `futureNodesToo`: adds a [MutationObserver](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver) to the page, mutating all elements added to the page. If this is specified, the function returns the `MutationObserver` used so that it can be started and stopped as desired.
 
 ```javascript
 function watchFutureNodes(replaceFn) {
 ```
-Implementation of `futureNodesToo` in `replaceAllInPage`. Creates and returns a `MutationObserver` which applies `replaceFn` to any added or modified text nodes.
+Implementation of `futureNodesToo` in `replaceAllInPage`. Creates and returns a `MutationObserver` which applies `replaceFn` to any added or modified text nodes when started.
 
 # To Use
 
