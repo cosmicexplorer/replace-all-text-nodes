@@ -30,7 +30,7 @@ replaceAllInPage = (replaceFn, opts) ->
   watchFutureNodes replaceFn if futureNodesToo
 
 watchFutureNodes = (replaceFn) ->
-  obsv = new MutationObserver (records) ->
+  new MutationObserver (records) ->
     for rec in records
       switch rec.type
         when 'characterData'
