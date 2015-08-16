@@ -8,8 +8,8 @@ Does what the name says.
 ```javascript
 function replaceAllFromNode(replaceFn, baseNode, opts) {
 ```
-- `replaceFn`: a function which replaces text. This can be done in any way desired. This works recursively downwards.
-- `baseNode`: the node to begin the tree search at.
+- `replaceFn`: a function which replaces text. This can be done in any way desired.
+- `baseNode`: the node to begin the tree search at. This works recursively downwards.
 - `opts`: an object with any of the following keys:
   - `inputsToo`: if truthy, also modifies any input boxes. Note that this may cause performance issues or unexpected UI behavior as the user will have their text replaced while typing.
 
