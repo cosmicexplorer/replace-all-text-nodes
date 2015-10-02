@@ -10,7 +10,7 @@ isValidBaseNode = (node) ->
 
 isTextNode = (node) -> node?.nodeType is 3
 
-replaceAllFromNode = (replaceFn, baseNode, opts) ->
+replaceRecurFromNode = (replaceFn, baseNode, opts) ->
   return [] if not isValidBaseNode baseNode
   # bfs for text leaves while trimming input boxes
   getLeafTextNodes = (node) -> switch
@@ -24,15 +24,17 @@ replaceAllFromNode = (replaceFn, baseNode, opts) ->
     node.data = replaceFn node.data
 
 # if futureNodesToo specified, returns mutationobserver which can be cancelled
-replaceAllInPage = (replaceFn, opts) ->
+replaceAllFromNode = (node, replaceFn, opts) ->
   {inputsToo, notNow, repeat, timeouts, futureNodesToo} = opts if opts
-  rplc = -> replaceAllFromNode replaceFn, document, inputsToo: inputsToo
+  rplc = -> replaceRecurFromNode replaceFn, node, inputsToo: inputsToo
   rplc() unless notNow
   timeouts?.forEach (timeout) -> setTimeout rplc, timeout
   setInterval rplc, repeat if repeat
-  watchFutureNodes replaceFn if futureNodesToo
+  watchFutureNodes replaceFn, opts if futureNodesToo
 
-watchFutureNodes = (replaceFn) ->
+replaceAllInPage = (args...) -> replaceAllFromNode document, args...
+
+watchFutureNodes = (replaceFn, opts) ->
   new MutationObserver (records) ->
     for rec in records
       node = rec.target
@@ -44,7 +46,8 @@ watchFutureNodes = (replaceFn) ->
             node.data = replaceFn node.data
             node.isReplaced = yes
         when 'childList'
-          replaceAllFromNode replaceFn, extNode for extNode in rec.addedNodes
+          for extNode in rec.addedNodes
+            replaceRecurFromNode replaceFn, extNode, opts
     null # don't cons up list comprehension
 
 module.exports =
