@@ -1,8 +1,8 @@
 isInputBox = (node) ->
   # check whether node is null or node is not an html node
   node?.tagName?.toUpperCase() is 'input' or
-  node.getAttribute? 'contenteditable' or
-  node.getAttribute? 'role' is 'textbox'
+  node?.getAttribute? 'contenteditable' or
+  node?.getAttribute? 'role' is 'textbox'
 
 isValidBaseNode = (node) ->
   node and ((node is document) or (not isInputBox node and
