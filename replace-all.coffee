@@ -7,10 +7,11 @@ isInputBox = (node) ->
   else if node.getAttribute 'spellcheck' then yes
   else no
 
-isValidBaseNode = (node) ->
+isValidBaseNode = (node, opts) ->
   if not node? then no
   else if node is document then yes
-  else if (not isInputBox node) and (isValidBaseNode node.parentNode) then yes
+  else if (not isInputBox node, opts) and
+          (isValidBaseNode node.parentNode) then yes
   else no
 
 isTextNode = (node) -> node?.nodeType is 3
@@ -54,7 +55,7 @@ watchFutureNodes = (replaceFn, opts) ->
           if node.isReplaced
             node.isReplaced = no
           else
-            if isValidBaseNode node
+            if isValidBaseNode node, opts
               node.data = replaceFn node.data
               node.isReplaced = yes
         when 'childList'
