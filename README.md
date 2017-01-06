@@ -3,7 +3,7 @@ replace-all-text-nodes
 
 Does what the name says. Replace all text nodes on the page (i.e. all text on the page), with an option to use a MutationObserver or repeat full-page replacement periodically to continue replacing text for new elements added via javascript.
 
-Created for use in [imposters](https://github.com/cosmicexplorer/imposters) and [concentraitor](https://github.com/cosmicexplorer/concentraitor).
+Created for use in [imposters](https://github.com/cosmicexplorer/imposters), [trump-vision](https://github.com/cosmicexplorer/trump-vision), and [concentraitor](https://github.com/cosmicexplorer/concentraitor).
 
 # API
 
